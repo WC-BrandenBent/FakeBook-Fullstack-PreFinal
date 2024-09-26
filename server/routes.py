@@ -1,4 +1,3 @@
-from werkzeug.wrappers import response
 from app import app, db, bcrypt
 from flask import jsonify, request, session
 from models import User

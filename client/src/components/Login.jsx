@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UseToken from "./UseToken";
+// import UseToken from "./UseToken";
 
-function Login() {
+function Login({ setToken }) {
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -11,6 +12,8 @@ function Login() {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [loginAttempt, setLoginAttempt] = useState(0);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
@@ -18,7 +21,13 @@ function Login() {
     }
   }, [loginAttempt]);
 
-  const { token, removeToken, setToken } = UseToken();
+  useEffect(() => {
+    if (loginSuccess) {
+      navigate("/profile");
+    }
+  }, [loginSuccess]);
+
+  // const { token, removeToken, setToken } = UseToken();
 
   const handleLogin = async (e) => {
     e.preventDefault();

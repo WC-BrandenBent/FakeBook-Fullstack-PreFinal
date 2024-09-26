@@ -3,20 +3,33 @@ import "./NavBar.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import Header from "./Logout";
+import Logout from "./Logout";
+// import Logout from "./Logout";
+import UseToken from "./UseToken";
 
 function NavBar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const { token, removeToken, setToken } = UseToken();
 
   useEffect(() => {
     if (token) {
       setIsAuthenticated(true);
+      console.log("isAuthenticated", isAuthenticated);
     } else {
       setIsAuthenticated(false);
+      console.log("isAuthenticated", isAuthenticated);
     }
+    console.log("token", token);
   }, [token]);
+
+  // const handleClick = () => {
+  //   if (token) {
+  //     setIsAuthenticated(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //   }
+  // };
 
   return (
     <div className="navbar-container">
@@ -40,7 +53,7 @@ function NavBar() {
               Profile
             </Link>
           </li>
-          {isAuthenticated && <Header />}
+          {isAuthenticated && <Logout removeToken={removeToken} />}
         </ul>
       </nav>
     </div>

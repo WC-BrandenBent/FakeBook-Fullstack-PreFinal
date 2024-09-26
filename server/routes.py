@@ -5,7 +5,7 @@ from models import User
 from flask_jwt_extended import (
     create_access_token,
     jwt_required,
-    unset_access_cookies,
+    unset_jwt_cookies,
     jwt_required,
 )
 
@@ -44,7 +44,8 @@ def my_profile():
 @app.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"message": "Successfully logged out"})
-    unset_access_cookies(response)
+    print(response)
+    unset_jwt_cookies(response)
     return response, 200
 
 

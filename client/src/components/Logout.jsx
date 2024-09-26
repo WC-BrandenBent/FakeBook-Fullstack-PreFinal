@@ -1,14 +1,15 @@
 import axios from "axios";
-import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
 
-function Logout(props) {
+function Logout({ removeToken }) {
+  // const { removeToken } = UseToken();
+
   function logout() {
     try {
       axios
         .post("http://localhost:5000/logout")
         .then((response) => {
-          props.token();
+          response.data.access_token = removeToken();
         })
         .catch((error) => {
           console.error(error);

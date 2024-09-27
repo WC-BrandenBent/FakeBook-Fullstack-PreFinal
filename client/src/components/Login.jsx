@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import UseToken from "./UseToken";
+import { useBaseUrl } from "../services/BaseUrlProvider";
+import "./Login.css";
 
 function Login({ setToken }) {
+  const baseUrl = useBaseUrl();
+
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -33,10 +37,7 @@ function Login({ setToken }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/token",
-        loginData
-      );
+      const response = await axios.post(`${baseUrl}/token`, loginData);
 
       if (response.status === 200) {
         console.log("Login successful");
@@ -66,11 +67,12 @@ function Login({ setToken }) {
     }));
   };
   return (
-    <div>
-      <h1>Login</h1>
-      {loginSuccess && <p>LOGIN SUCCESSFUL</p>}
-      <form onSubmit={handleLogin}>
+    <>
+      <h1 className="login-title">Login</h1>
+      {loginSuccess && <p className="login-success">LOGIN SUCCESSFUL</p>}
+      <form className="login-form" onSubmit={handleLogin}>
         <input
+          className="login-input"
           type="text"
           name="username"
           placeholder="Username"
@@ -78,15 +80,18 @@ function Login({ setToken }) {
           onChange={handleChange}
         />
         <input
+          className="login-input"
           type="password"
           name="password"
           placeholder="Password"
           value={loginData.password}
           onChange={handleChange}
         />
-        <button type="submit">Login</button>
+        <button className="login-button" type="submit">
+          Login
+        </button>
       </form>
-    </div>
+    </>
   );
 }
 

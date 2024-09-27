@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Logout from "./Logout";
 // import Logout from "./Logout";
-import UseToken from "./UseToken";
+import UseToken from "../services/UseToken";
 
 function NavBar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

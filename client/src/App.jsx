@@ -12,12 +12,10 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import Logout from "./components/Logout";
 import Error from "./components/Error";
-import { BaseUrlProvider, useBaseUrl } from "./services/BaseUrlProvider";
+import { BaseUrlProvider } from "./services/BaseUrlProvider";
 
 function App() {
   const { token, removeToken, setToken } = UseToken();
-
-  const baseUrl = useBaseUrl();
 
   return (
     <>

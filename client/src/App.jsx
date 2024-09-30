@@ -1,25 +1,64 @@
-import { useState } from "react";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import "./App.css";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import NavBar from "./components/NavBar";
-import UseToken from "./services/UseToken";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Header from "./components/Logout";
-import Profile from "./components/Profile";
-import Home from "./components/Home";
-import Logout from "./components/Logout";
-import Error from "./components/Error";
-import { BaseUrlProvider } from "./services/BaseUrlProvider";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/shared/Navbar";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/shared/PrivateRoute";
+import Profile from "./pages/Profile";
+import AllPosts from "./components/posts/AllPosts";
+import { AuthProvider } from "./contexts/AuthContext";
+import { BaseUrlProvider } from "./hooks/BaseUrlProvider";
+import PostDetails from "./components/posts/PostDetails";
 
 function App() {
-  const { token, removeToken, setToken } = UseToken();
-
   return (
     <>
-      <BaseUrlProvider>
+      <AuthProvider>
+        <BaseUrlProvider>
+          <BrowserRouter>
+            <Navbar />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                  path="/profile"
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/posts"
+                  element={
+                    <PrivateRoute>
+                      <AllPosts />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/posts/:postId"
+                  element={
+                    <PrivateRoute>
+                      <PostDetails />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </BaseUrlProvider>
+      </AuthProvider>
+    </>
+  );
+}
+
+export default App;
+
+{
+  /* <BaseUrlProvider>
         <BrowserRouter>
           <div className="App">
             <NavBar></NavBar>
@@ -36,9 +75,5 @@ function App() {
             </Routes>
           </div>
         </BrowserRouter>
-      </BaseUrlProvider>
-    </>
-  );
+      </BaseUrlProvider> */
 }
-
-export default App;

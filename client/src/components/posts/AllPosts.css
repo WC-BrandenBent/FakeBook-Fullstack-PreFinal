@@ -1,0 +1,47 @@
+.all-posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.posts-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background-color: #fdfdfd;
+  transition: box-shadow 0.3s;
+  color: black;
+}
+
+.post-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-link h3 {
+  margin: 0 0 8px 0;
+}
+
+.post-link p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.error-message {
+  color: red;
+}
+
+.poster {
+  font-size: 14px;
+  color: #4e4e4e;
+}

@@ -63,7 +63,7 @@ function Comment({ comment, onCommentUpdated, onCommentDeleted }) {
     <div className="comment">
       {isEditing ? (
         <form onSubmit={handleEditSubmit} className="edit-comment-form">
-          {error && <div className="error-message">{error}</div>}
+          {error && <div className="error-message"><Posts></Posts></div>}
           <textarea
             value={editedContent}
             onChange={(e) => setEditedContent(e.target.value)}

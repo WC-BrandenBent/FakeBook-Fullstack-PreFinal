@@ -14,7 +14,7 @@ function AllPosts() {
   useEffect(() => {
     const getAllPosts = async () => {
       try {
-        const data = await await fetchAllPosts();
+        const data = await fetchAllPosts();
         setPosts(data.posts);
       } catch (error) {
         setError(error.message || "Failed to fetch posts.");

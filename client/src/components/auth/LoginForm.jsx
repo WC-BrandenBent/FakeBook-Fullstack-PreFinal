@@ -29,9 +29,6 @@ function LoginForm() {
       });
 
       navigate("/profile");
-
-      // setLoginSuccess(true);
-      // console.log(loginSuccess);
     } catch (error) {
       setError(error.message || "Login Failure");
     }

@@ -4,15 +4,7 @@ const API_BASE_URL = process.env.REACT_APP_FLASK_API_ENDPOINT;
  * Retrieves the authentication token from localStorage.
  * @returns {string|null} The JWT token if present, else null.
  */
-// const getAuthToken = () => {
-//     const token = localStorage.getItem("tokens");
-//     try {
-//         return token ? JSON.parse(token) : null;
-//     } catch (error) {
-//         console.error("Error parsing token from localStorage:", error);
-//         return null;
-//     }
-// }
+
 
 const getAuthToken = () => {
     const token = localStorage.getItem('token');
